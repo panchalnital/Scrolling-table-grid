@@ -1,17 +1,5 @@
 # Scrolling-table-grid
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/scrollerCSS.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="js/scrollerJS.js"></script>
-  
-</head>
-<body>
 <div class="container">
   <h2>Qes 1</h2>
   <p> Scrolling Grid Rating Question Style_Feasibility :</p>            
@@ -117,4 +105,4 @@ $(window).load(function(){
 })
 </script>
 </body>
-</html>
+
