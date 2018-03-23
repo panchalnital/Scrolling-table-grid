@@ -1,0 +1,68 @@
+ .activeColor {
+        background-color: #42e5f4;
+}
+
+ .disactiveColor {
+        background-color: #ffffff;
+}
+
+.fistrow{
+	    table-layout: fixed;
+	    width: 300px;
+        
+}
+
+ td span:first-child{
+            float:right;
+            font-size: 25px;
+
+}
+td span:last-child{
+            float:right;
+            font-size: 25px;
+
+}
+
+@media (max-width: 575.98px) { 
+.fistrow{
+	    table-layout: fixed;
+	    width: 100px;
+        
+}
+@media (min-width: 576px) and (max-width: 767.98px) { 
+.fistrow{
+	    table-layout: fixed;
+	    width: 200px;
+        
+}
+@media (min-width: 768px) and (max-width: 991.98px) { 
+.fistrow{
+	    table-layout: fixed;
+	    width: 300px;
+        
+}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+.fistrow{
+	    table-layout: fixed;
+	    width: 350px;
+        
+}
+}
+@media (min-width: 1200px) {
+	.fistrow{
+	    table-layout: fixed;
+	    width: 350px;
+        
+}
+}
+
+/*table #tblLeft {
+    table-layout: auto;
+    width: 180px;    
+}*/
+/*
+td, th {
+word-wrap: break-word !important;
+word-break: break-all !important;
+}
