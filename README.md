@@ -1,10 +1,7 @@
 # Scrolling-table-grid
 
 <div class="container">
-  <h2>Qes 1</h2>
-  <p> Scrolling Grid Rating Question Style_Feasibility :</p>            
- 
-  <div class="row">
+<div class="row">
      <div class="col-xs-12 col-sm-10 col-lg-10">
         <div id="parentHolder"></div>
         <div id="cnt"></div> 
