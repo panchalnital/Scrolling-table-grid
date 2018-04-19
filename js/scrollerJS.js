@@ -1,13 +1,14 @@
     function MoveUp()
     {
         //var RightTable = document.getElementById("tblLeft").tBodies.length;;
+         $("input[type=textbox]").attr("disabled",true);
       var RightTable=  document.getElementById("tblLeft").tBodies[0].children;
         var i=0;
 
-          var cnt=$('input:radio:checked').length;
-           var crows=RightTable.length;
-           var displaycnt="("+cnt+"/"+crows+")";
-           $('#cnt').html(displaycnt);
+          //var cnt=$('input:radio:checked').length;
+          // var crows=RightTable.length-2;
+           //var displaycnt="("+cnt+"/"+crows+")";
+           //$('#cnt').html(displaycnt);
         
         for(i=0; i<RightTable.length; i++)
         {
@@ -38,7 +39,7 @@
 
        if(i==1)
        {
-            PreviousRow.setAttribute("data", "1");
+          /*  PreviousRow.setAttribute("data", "1");
             $('#'+PreviousRow.id).contents('td:first').contents('span#btnUp').removeClass("glyphicon glyphicon-triangle-top");
             $('#'+PreviousRow.id).contents('td:first').contents('span#btnDown').removeClass('glyphicon glyphicon-triangle-bottom');
 
@@ -63,7 +64,7 @@
                 $(this).attr("disabled",true);
 
               });
-            $("#"+NextRow.id).addClass("activeColor");
+            $("#"+NextRow.id).addClass("activeColor");  */
 
        }
        else if(i==tbllength-1)
@@ -89,43 +90,7 @@
               });
           $("#"+PPRow.id).addClass("activeColor");
        }
-       else if(i==0)
-       {
-          NextRow.setAttribute("data", "1");
-            $('#'+NextRow.id).contents('td:first').contents('span#btnUp').removeClass("glyphicon glyphicon-triangle-top");
-            $('#'+CurrentRow.id).contents('td:first').contents('span#btnDown').removeClass('glyphicon glyphicon-triangle-bottom');
-
-          //PreviousRow.style.backgroundColor = "white";
-          $("#"+NextRow.id).addClass("activeColor");
-           $("#"+NextRow.id).removeClass("activeColor");
-          $("#"+CurrentRow.id).addClass("disactiveColor");
-          $("#"+NextRow.id).find("input:radio").each(function() {
-                $(this).attr("disabled",false);
-
-              });
-            $("#"+CurrentRow.id).find("input:radio").each(function() {
-                $(this).attr("disabled",true);
-
-              });
-          $("#"+CurrentRow.id).contents('td:first').contents('span#btnUp').addClass("glyphicon glyphicon-triangle-top");
-         // $("#"+CurrentRow.id).contents('td:first').contents('span#btnDown').addClass("glyphicon glyphicon-triangle-bottom");
-
-        //  NNRow.style.display='none';
-           CurrentRow.removeAttribute("data");
-           // CurrentRow.style.backgroundColor = "#42e5f4";
-           $("#"+CurrentRow.id).removeClass("disactiveColor");
-              $("#"+CurrentRow.id).addClass("activeColor");
-           // $("#"+CurrentRow.id).removeClass("disactiveColor");
-          //  $("#"+CurrentRow.id).addClass("activeColor");
-          //  $("#"+CurrentRow.id).contents('td:first').contents('span#btnUp').addClass("glyphicon glyphicon-triangle-top");
-          //  $("#"+CurrentRow.id).contents('td:first').contents('span#btnDown').removeClass("glyphicon glyphicon-triangle-bottom");
-          //  $("#"+CurrentRow.id).find("input:radio").each(function() {
-          //      $(this).attr("disabled",true);
-
-          //    });
-         //   $("#"+NextRow.id).addClass("activeColor");
-
-       }
+    
        else
        {
            PPRow.style.display='';
@@ -201,6 +166,11 @@
            $("#"+NNRow.id).addClass("activeColor");
              $("#"+NNRow.id).contents('td:first').contents('span#btnDown').addClass("glyphicon glyphicon-triangle-bottom");
            PreviousRow.style.display='none';
+
+           $("#"+NNRow.id).find("input:radio").each(function() {
+                $(this).attr("disabled",true);
+
+              });
              
            //NextRow.style.display='none';
            CurrentRow.removeAttribute("data");
@@ -229,7 +199,7 @@
         }
         else if(tbllength-1==i)
         {
-             PPRow.style.display='none';
+            /* PPRow.style.display='none';
               $("#"+PreviousRow.id).removeClass("disactiveColor");
               $("#"+PreviousRow.id).addClass("activeColor");
              NextRow.setAttribute("data", "1");
@@ -252,7 +222,7 @@
                  $("#"+CurrentRow.id).find("input:radio").each(function() {
                 $(this).attr("disabled",true);
 
-              });
+              }); */
         }
         else if(i==tbllength)
         {
@@ -309,6 +279,9 @@
 
               });
            NextRow.setAttribute("data", "1");
+           $("#"+NextRow.id).find('input[type=textbox]').attr("disabled",false);
+         
+           
             $("#"+NextRow.id).contents('td:first').contents('span#btnUp').removeClass("glyphicon glyphicon-triangle-top");
           $("#"+NextRow.id).contents('td:first').contents('span#btnDown').removeClass("glyphicon glyphicon-triangle-bottom");
           //   NextRow.style.backgroundColor='White';
@@ -332,10 +305,10 @@
         var PreviousRow;
         var CurrentRow;
         var cnt=0
-           var cnt=$('input:radio:checked').length;
-           var crows=RightTable.length;
-           var displaycnt="("+cnt+"/"+crows+")";
-           $('#cnt').html(displaycnt);
+           //var cnt=$('input:radio:checked').length;
+           //var crows=RightTable.length-2;
+           //var displaycnt="("+cnt+"/"+crows+")";
+           //$('#cnt').html(displaycnt);
 
           
         for(i=0; i<RightTable.length; i++)
@@ -372,38 +345,66 @@
             if($(this).find("input:radio:checked").length>0){
                 
                  list.push(selValue);
+
+
                  
               }else{
                  
               }
          });
 
-    
-           $("#arr_data").val(list);
+            var list1=list.join('#');
+           $("#arr_data").val(list1);
 
- $(".trClass").each(function() {
-          var selValue =   $(this).attr('id');
-            if($(this).find("input:radio:checked").length>0){
-                 //var che = selValue;
-                 //list.push(selValue);
-                 var trid= $(this).closest("tr").attr('id');
-                  $('#'+trid).contents('td').css({'border': '1px solid #ddd', 'border-left': 'none', 'border-right': 'none'});
-                  $('#'+trid).contents('td:first').css('border-left', 'none');
-                  $('#'+trid).contents('td:last').css('border-right', 'none');
-                   //alert(che);
-              }else{
-                var trid= $(this).closest("tr").attr('id');
-                  $('#'+trid).contents('td').css({'border': '2px solid red', 'border-left': 'none', 'border-right': 'none'});
-                  $('#'+trid).contents('td:first').css('border-left', '1px solid red');
-                  $('#'+trid).contents('td:last').css('border-right', '1px solid red');
-              }
-         });
+           $(".trClass").each(function() {
+                    var trLength=$(".trClass").length;
+                    var selValue1 =   $(this).attr('id');
+                    selValue1=selValue1.replace('tblLeftTr', '');
+                    if(selValue1==1 || selValue1==trLength+1){
+                        var trid= $(this).closest("tr").attr('id');
+                            $('#'+trid).contents('td').css({'border': '1px solid #ddd', 'border-left': 'none', 'border-right': 'none'});
+                            $('#'+trid).contents('td:first').css('border-left', 'none');
+                            $('#'+trid).contents('td:last').css('border-right', 'none');
+                    }else{
+                    var selValue =   $(this).attr('id');
+                      if($(this).find("input:radio:checked").length>0){
+                           //var che = selValue;
+                           //list.push(selValue);
+                           var trid= $(this).closest("tr").attr('id');
+                            $('#'+trid).contents('td').css({'border': '1px solid #ddd', 'border-left': 'none', 'border-right': 'none'});
+                            $('#'+trid).contents('td:first').css('border-left', 'none');
+                            $('#'+trid).contents('td:last').css('border-right', 'none');
+                             //alert(che);
+                        }else{
+                          var trid= $(this).closest("tr").attr('id');
+                            $('#'+trid).contents('td').css({'border': '2px solid red', 'border-left': 'none', 'border-right': 'none'});
+                            $('#'+trid).contents('td:first').css('border-left', '1px solid red');
+                            $('#'+trid).contents('td:last').css('border-right', '1px solid red');
+                        }
+                    }
+                   });
+           var RightTable=  document.getElementById("tblLeft").tBodies[0].children;
+           var cnt=$('input:radio:checked').length;
+           var crows=RightTable.length-2;
+           var crows_submit=RightTable.length-3;
+           var displaycnt="("+cnt+"/"+crows+")";
+           $('#cnt').html(displaycnt);
+
+           if(cnt==crows_submit){
+             $('#forwardbutton').prop('disabled',false); 
+         
+           }
 
 
     }
 
-function dataload(bookDetails){
+function dataload(bookDetails,bookDetails_col_c,bookDetails_col_row,qid){
 
+
+  //console.log(bookDetails_col_c);
+  //console.log(bookDetails_col_row);
+  //var c=bookDetails_col_c.length;
+  //var r=bookDetails_col_c.length;
   var parentDiv = $("#parentHolder");
     parentDiv.html("");
     var aTable = $("<table>", {
@@ -413,10 +414,13 @@ function dataload(bookDetails){
     var rowCount = bookDetails.length;
     var colmCount = bookDetails[0].length;
 
+
+   // alert(colmCount);
+
     // For loop for adding header .i.e th to our table
     for (var k = 0; k < 1; k++) {
         var fragTrow = $("<thead><tr>", {
-            "class": "trClass"
+            "class": "trClass table-bordered"
         }).appendTo(aTable);
         for (var j = 0; j < colmCount; j++) {
             $("<th>", {
@@ -443,12 +447,12 @@ function dataload(bookDetails){
                                 if(j==0){
                                   $("<td>",{
                                       "class": "tdClass tablecellUP tablecellDown fistrow ",
-                                      "id":"".concat(i).concat(j),
+                                       "id":"",
                                   }).appendTo(fragTrow).html(bookDetails[i][j]);
                                 }else{
                                   $("<td>",{
-                                      "class": "tdClass",
-                                      "id":"".concat(i).concat(j),
+                                      "class": "tdClass aligData",
+                                      "id":"".concat(qid).concat("_").concat(bookDetails_col_row[i]).concat("_").concat(bookDetails_col_c[j]),
                                   }).appendTo(fragTrow).html(bookDetails[i][j]);
                                 }
                         }
@@ -467,12 +471,12 @@ function dataload(bookDetails){
                     if(j==0){
                       $("<td>",{
                           "class": "tdClass tablecellUP tablecellDown fistrow ",
-                          "id":"".concat(i).concat(j),
+                          "id":"",
                       }).appendTo(fragTrow).html(bookDetails[i][j]);
                     }else{
                       $("<td>",{
-                          "class": "tdClass",
-                          "id":"".concat(i).concat(j),
+                          "class": "tdClass aligData",
+                          "id":"".concat(qid).concat("_").concat(bookDetails_col_row[i]).concat("_").concat(bookDetails_col_c[j]),
                       }).appendTo(fragTrow).html(bookDetails[i][j]);
                     }
                   }
@@ -492,12 +496,12 @@ function dataload(bookDetails){
                 if(j==0){
                   $("<td>",{
                       "class": "tdClass tablecellUP tablecellDown fistrow",
-                      "id":"".concat(i).concat(j),
+                      "id":"",
                   }).appendTo(fragTrow).html(bookDetails[i][j]);
                 }else{
                   $("<td>",{
-                      "class": "tdClass",
-                      "id":"".concat(i).concat(j),
+                      "class": "tdClass aligData",
+                      "id":"".concat(qid).concat("_").concat(bookDetails_col_row[i]).concat("_").concat(bookDetails_col_c[j]),
                   }).appendTo(fragTrow).html(bookDetails[i][j]);
                 }
                   
