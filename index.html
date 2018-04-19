@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/scrollerCSS.css" rel="stylesheet">
+  <link href="scroller2.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="js/scrollerJS.js"></script>
+  <script src="scroller3.js"></script>
+    <!--<script src="scroller4.js"></script>-->
   
 </head>
 <body>
@@ -43,8 +44,9 @@
   <div class="row">
           <div class="col-xs-6 col-sm-6 col-lg-6"> </div>
           <div class="col-xs-6 col-sm-6 col-lg-6"> <i class="arrow-alt-down"></i>
-                                    <button id="btnDown" onclick="saveData()" type="button" value="Down" ><span  class="glyphicon glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+                                    <button id="forwardbutton" onclick="saveData()" type="button" value="Down" ><span  class="glyphicon glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
           <input type="hidden" id="arr_data" name="array_data" value="">
+           <input type="hidden" id="Q10" name="array_data" value="">
                                   </div>
 
   </div>
@@ -52,27 +54,50 @@
 
 <script>
 $(document).ready(function(){
+   
+    $('#forwardbutton').prop('disabled',true); 
+    $('#forwardbutton').click(function(){alert("good")});
+    var qid=$("#Q10").attr('id');
     var bookDetails = [["Advertised","Currently","Not currently","Have never"]];
+    var books=[];
     bookDetails[0].push("");
     bookDetails.reverse();
-  //var bookDetails = [["Have never", "Not currently","Currently","Advertised",""]];
+     var bookDetails_col_c = ["","11","22","33","44"];
+  
+  var bookDetails_col =["","Business Insider/Insider Inc ", "Facebook", "Hulu","Meredith", "Oath", "Purch","Time Inc.", "Turner","Other"," "];
+    var bookDetails_col_row =["","","11", "22", "33","44", "55", "66","77", "88","99",""];
 
-  var bookDetails_col =["Business Insider/Insider Inc ", "Facebook", "Hulu","Meredith", "Oath", "Purch","Time Inc.", "Turner"];
+
   var cnt=1;
    $.each(bookDetails_col, function(i) {
-      
-     
-   
-    
-      bookDetails.push([bookDetails_col[i],"<label><input type='radio' id='tblLeftTr"+cnt+"' name='optradio"+bookDetails_col[i]+"'> </label>","<label><input type='radio' id='tblLeftTr"+cnt+"' name='optradio"+bookDetails_col[i]+"'> </label>","<label><input type='radio' id='tblLeftTr"+cnt+"' name='optradio"+bookDetails_col[i]+"'> </label>","<label><input type='radio' id='tblLeftTr"+cnt+"' name='optradio"+bookDetails_col[i]+"'> </label>"]);
-      cnt++;
-    });
 
-   dataload(bookDetails);
+    if(i==bookDetails_col.length-2){
+      books.push(bookDetails_col[i]+"<label style='position:  absolute;width: 25px;'><input type='textbox' id='otherTxt' class='otherBox' name='optradio"+bookDetails_col[i]+"' value='' style=' /* width: 115px; */ max-width: 468%;'> </label>");
+    }else{
+       books.push(bookDetails_col[i]);
+     }
+
+
+      $.each(bookDetails[0], function(j) {
+          if(i==0 || i==bookDetails_col.length-1){
+            books.push("");
+
+          }else{
+            books.push("<label><input type='radio' id='tblLeftTr"+cnt+"_"+j+"' name='optradio"+bookDetails_col[i]+"'> </label>");
+          }
+          
+        
+       });
+      bookDetails.push(books);
+      books=[];
+     cnt++;
+    
+     });
+    dataload(bookDetails,bookDetails_col_c,bookDetails_col_row,qid);
 });
 
 $(window).load(function(){
-
+        $("input[type=textbox]").attr("disabled",true);
         $("#tblLeftTr1").find("input:radio").each(function() {
                 $(this).attr("disabled",true);
 
@@ -84,31 +109,98 @@ $(window).load(function(){
               });
 
 
-        var buttonup = $("<span id='btnUp' onclick='MoveUp()' class='glyphicon glyphicon-triangle-top arrowButtonAligment' aria-hidden='true'></span>");
+        /*var buttonup = $("<label ><span id='btnUp' onclick='MoveUp()' class='glyphicon glyphicon-triangle-top arrowButtonAligment bttnup' aria-hidden='true'></span></label>");
             buttonup.appendTo(".tablecellUP");
 
-        var buttondown = $("<span id='btnDown' onclick='MoveDown()' class='glyphicon  glyphicon-triangle-bottom arrowButtonAligment' aria-hidden='true'></span>");
+        var buttondown = $("<label ><span id='btnDown' onclick='MoveDown()' class='glyphicon  glyphicon-triangle-bottom arrowButtonAligment bttndown' aria-hidden='true'></span></label>");
             buttondown.appendTo(".tablecellDown");
+
+          $('#tblLeftTr2').contents('td:first').contents('label').contents('span#btnUp').removeClass("glyphicon glyphicon-triangle-top");  
+          $('#tblLeftTr2').contents('td:first').contents('label').contents('span#btnDown').removeClass('glyphicon glyphicon-triangle-bottom');
+           $('#tblLeftTr1').contents('td:first').contents('label').contents('span#btnDown').removeClass('glyphicon glyphicon-triangle-bottom');
+           $('#tblLeftTr3').contents('td:first').contents('label').contents('span#btnUp').removeClass('glyphicon glyphicon-triangle-top');*/
+
+
+
+
+/* without label */
+        var buttonup = $("<span id='btnUp' onclick='MoveUp()' class='glyphicon glyphicon-triangle-top arrowButtonAligment bttnup' aria-hidden='true'></span>");
+            buttonup.appendTo(".tablecellUP");
+
+        var buttondown = $("<span id='btnDown' onclick='MoveDown()' class='glyphicon  glyphicon-triangle-bottom arrowButtonAligment bttndown' aria-hidden='true'></span>");
+            buttondown.appendTo(".tablecellDown");
+
+
 
           $('#tblLeftTr2').contents('td:first').contents('span#btnUp').removeClass("glyphicon glyphicon-triangle-top");  
           $('#tblLeftTr2').contents('td:first').contents('span#btnDown').removeClass('glyphicon glyphicon-triangle-bottom');
            $('#tblLeftTr1').contents('td:first').contents('span#btnDown').removeClass('glyphicon glyphicon-triangle-bottom');
            $('#tblLeftTr3').contents('td:first').contents('span#btnUp').removeClass('glyphicon glyphicon-triangle-top');
+/* without label */
 
-
-          var bookDetails_col =["12","23","31"];
+         // var bookDetails_col =["12","23","31"];
+          var scale_Label_str="Q10_11_11#Q10_22_33#Q10_33_11";
+          var bookDetails_col =scale_Label_str.split('#');
           $.each(bookDetails_col, function(i) {
 
                    $("#"+bookDetails_col[i]).find("input:radio").each(function() {
-                        $(this).attr("checked",true);
-                                //jQuery("#radio_1").attr('checked', true);
+                    
+                        $(this).attr("checked",true)      
 
                       });
 
         });
+           /*var inp = $("#otherTxt");
+            if (inp.val().length > 0) {
+              inp.addClass("otherBox");
+            }else{
+              inp.removeClass("otherBox");
+            }*/
+          var other_values="";
+          $("#otherTxt").val(other_values);
+           $('html').keyup(function(e){
+            if ($("#otherTxt").val().length==0){
+                  $('#otherTxt').addClass("otherBox");
+               }
+           });  //if will don't fix alligment then it will show as it is in mobile layout
+
+          //key press 
+            $("#otherTxt").keypress(function(){
+              var oth=$("#otherTxt").val().length;
+               if (oth>0){
+                  $('#otherTxt').removeClass("otherBox");
+               }
+        
+            });
+
+        $("td").click(function() {
+           var a=   $(this).parent();
+           if($(this).index() == 0){}else{
+           if(a.attr('data')==1)
+           {
+                $(a).find("input:radio").each(function() {
+
+                    if($(this).prop("checked")){
+                      $(this).prop("checked",false); 
+                    }
+                    
+                 });
+                $(this).find("input:radio").each(function() {
+                      $(this).prop("checked",true); 
+                 });
+          }}
+          saveData();
+        });
+
+
+
+
+
+
+
            var RightTable=  document.getElementById("tblLeft").tBodies[0].children;
            var cnt=$('input:radio:checked').length;
-           var crows=RightTable.length;
+           var crows=RightTable.length-2;
            var displaycnt="("+cnt+"/"+crows+")";
            $('#cnt').html(displaycnt);
 
